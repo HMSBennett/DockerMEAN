@@ -1,15 +1,23 @@
-FROM node:10
+FROM node:10 AS build
+
+WORKDIR /build
+
+COPY . .
+
+RUN NG_CLI_ANALYTICS=ci npm install -g @angular/cli
+
+RUN NG_CLI_ANALYTICS=ci npm install
+
+RUN npm run build
+
+RUN ls dist
+
+#-----------------------------------------------------
+
+FROM nginx:alpine
 
 WORKDIR /app
 
-COPY ./TeamAPoolProjectUI/* .
+COPY --from=build /build/dist/TeamAPoolProjectUI .
 
-ENV ANGULAR_CLI_VERSION=7.3.9
-
-RUN npm install
-
-RUN npm install -g @angular/cli@${ANGULAR_CLI_VERSION}
-
-#EXPOSE 4200
-
-CMD ng serve --host 0.0.0.0
+COPY nginx.conf /etc/nginx/nginx.conf

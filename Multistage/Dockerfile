@@ -1,6 +1,6 @@
 FROM node:10 
 
-WORKDIR /app
+WORKDIR /appFront
 
 COPY ./TeamAPoolProjectUI/* .
 
@@ -8,14 +8,16 @@ RUN npm install
 
 RUN npm install -g @angular/cli=7.3.9
 
+RUN npm build
+
 FROM node:12-slim
 
-WORKDIR /app
+WORKDIR /appBack
 
 COPY ./TeamAPoolProjectBackend/* .
 
 RUN npm install
 
-ENTRYPOINT ["ng serve --host 0.0.0.0", "node", "Index.js"]
+ENTRYPOINT ["node", "Index.js"]
 
 
