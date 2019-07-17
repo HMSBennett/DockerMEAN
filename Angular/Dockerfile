@@ -2,7 +2,7 @@ FROM node:10
 
 WORKDIR /app
 
-COPY . .
+COPY ./TeamAPoolProjectUI/* .
 
 ENV ANGULAR_CLI_VERSION=7.3.9
 
