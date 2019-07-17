@@ -2,11 +2,11 @@ FROM node:12-slim
 
 WORKDIR /app
 
-COPY . .
+COPY ./TeamAPoolProjectBackend/* .
 
 RUN npm install 
 
-COPY . .
+COPY ./TeamAPoolProjectBackend/* .
 
 #EXPOSE 8080 
 
