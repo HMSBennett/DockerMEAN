@@ -10,4 +10,4 @@ COPY . .
 
 #EXPOSE 8080 
 
-ENTRYPOINT ["node","Index.js"]
+ENTRYPOINT ["./entrypoint.sh"]
