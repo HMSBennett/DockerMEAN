@@ -1,9 +1,22 @@
 version: "3.7"
 
 volumes:
+        jenkins-home:
+
         mongo:
 
 services:
+        ui:
+                image: ui:latesti
+                container_name: frontend
+                build: ./ui
+                ports:
+                        - target: 80
+                          published: 80
+                depends_on:
+                        - jenkins
+                        - api
+
         api:
                 image: api:latest
                 container_name: backend
@@ -17,16 +30,16 @@ services:
                 volumes:
                         - type: volume
                           source: mongo
-                          target: /data
+                          target: /data/db
 
-        nginx:
-                image: nginx:latest
-                container_name: frontend
+        jenkins:
+                image: jenkins:bobcrutchley/jenkins:latest
+                container_name: jenkins
                 volumes:
+                        - type: volume
+                          source: ./jenkins-home
+                          target: /var/jenkins_home
                         - type: bind
-                          source: ./nginx.conf
-                          target: /etc/nginx/nginx.conf
-                ports:
-                        - target: 80
-                          published: 80
-                         
+                          source: /var/run/docker.sock
+                          target: /var/run/docker.sock
+
