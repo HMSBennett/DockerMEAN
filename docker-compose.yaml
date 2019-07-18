@@ -1,4 +1,4 @@
-version: "3.3"
+version: "3.7"
 
 volumes:
         jenkins-home:
@@ -7,7 +7,7 @@ volumes:
 
 services:
         ui:
-                image: ui:latesti
+                image: ui:latest
                 container_name: frontend
                 build: ./ui
                 ports:
@@ -33,7 +33,7 @@ services:
                           target: /data/db
 
         jenkins:
-                image: bobcrutchley/jenkins:latest
+                image: hmsbennett/jenkins:latest
                 container_name: jenkins
                 volumes:
                         - type: volume
@@ -44,4 +44,3 @@ services:
                           target: /var/run/docker.sock
                 environment:
                         - JENKINS_OPTS="--prefix=/jenkins"
-
