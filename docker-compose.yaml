@@ -6,8 +6,7 @@ volumes:
 
 services:
         ui:
-                image: ui:latest
-                build: ./ui
+                image: hmsbennett/pool_ui:latest
                 ports:
                         - target: 80
                           published: 80
@@ -23,8 +22,7 @@ services:
                           target: /data/db
 
         api:
-                image: api:latest
-                build: ./api
+                image: hmsbennett/pool_api:latest
                 depends_on:
                         - mongo
 
