@@ -1,0 +1,13 @@
+version: "3.7"
+
+volumes:
+        mongo:
+
+services:
+
+        mongo:
+                image: mongo:latest
+                volumes:
+                        - type: volume
+                          source: mongo
+                          target: /data/db

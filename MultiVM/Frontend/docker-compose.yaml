@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+        ui:
+                image: hmsbennett/pool_ui:latest
+                ports:
+                        - target: 80
+                          published: 80
+                depends_on:
+                        - jenkins
+                        - api

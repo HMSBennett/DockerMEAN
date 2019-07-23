@@ -1,0 +1,8 @@
+version: "3.7"
+
+services:
+
+        api:
+                image: hmsbennett/pool_api:latest
+                depends_on:
+                        - mongo
