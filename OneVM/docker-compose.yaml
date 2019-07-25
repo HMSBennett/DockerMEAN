@@ -22,7 +22,7 @@ services:
                           target: /data/db
 
         api:
-                image: hmsbennett/pool_api_comp:latest
+                image: hmsbennett/pool_api:latest
                 depends_on:
                         - mongo
 
